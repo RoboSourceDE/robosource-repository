@@ -3,6 +3,7 @@ import { HeroSection } from "@/components/hero-section"
 import { HowItWorks } from "@/components/how-it-works"
 import { RobotFilters } from "@/components/robot-filters"
 import { FeaturedRobots } from "@/components/featured-robots"
+import { UserReviews } from "@/components/user-reviews"
 import { CTASection } from "@/components/cta-section"
 import { Footer } from "@/components/footer"
 
@@ -19,6 +20,7 @@ export default function Home() {
           </div>
         </section>
         <FeaturedRobots />
+        <UserReviews />
         <CTASection />
       </main>
       <Footer />

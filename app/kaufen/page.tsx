@@ -11,26 +11,22 @@ export default function KaufenPage() {
 
       <main className="min-h-screen bg-background pt-24">
         <div className="container mx-auto px-3 sm:px-4 py-6 sm:py-8 lg:py-12">
+          <div className="text-center mb-8 sm:mb-10 lg:mb-12">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary">Roboter Kaufen</h1>
+          </div>
+
           {/* AI Search - smaller and more compact */}
           <div className="mb-6">
             <AISearch />
           </div>
 
-          <div className="mb-6">
+          <div className="flex gap-8">
             <MarketplaceFilters filterType="kaufen" />
-          </div>
 
-          {/* Robot Grid */}
-          <div className="lg:ml-0">
-            <div className="mb-6">
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-2">
-                Humanoide Roboter kaufen
-              </h1>
-              <p className="text-sm sm:text-base text-muted-foreground">
-                Finden Sie den perfekten humanoiden Roboter für Ihre Anforderungen
-              </p>
+            {/* Robot Grid - with proper spacing for sidebar */}
+            <div className="flex-1 min-w-0">
+              <RobotGrid filterType="kaufen" />
             </div>
-            <RobotGrid filterType="kaufen" />
           </div>
         </div>
       </main>

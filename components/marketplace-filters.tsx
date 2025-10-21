@@ -45,13 +45,6 @@ export function MarketplaceFilters({ filterType }: MarketplaceFiltersProps) {
             </div>
           )}
 
-          <div className="space-y-2">
-            <Label className="text-xs sm:text-sm font-medium text-foreground">Typ</Label>
-            <div className="h-10 px-3 py-2 bg-muted border border-border rounded-md flex items-center text-sm text-muted-foreground">
-              {filterType === "mieten" ? "Mieten" : "Kaufen"}
-            </div>
-          </div>
-
           {/* Gewerblich oder Privat */}
           <div className="space-y-2">
             <Label className="text-xs sm:text-sm font-medium text-foreground">Nutzung</Label>
