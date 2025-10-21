@@ -22,10 +22,14 @@ export function Navbar() {
   return (
     <nav
       className={`fixed top-0 z-50 w-full border-b border-border backdrop-blur-md transition-all duration-300 ease-in-out ${
-        isScrolled ? "h-[70px] bg-background/95 shadow-sm" : "h-[100px] bg-background/70"
+        isScrolled ? "h-[60px] bg-background/30 shadow-sm" : "h-[100px] bg-background/70"
       }`}
     >
-      <div className="container mx-auto flex h-full items-center justify-between px-3 sm:px-4">
+      <div
+        className={`container mx-auto flex h-full items-center justify-between transition-all duration-300 ${
+          isScrolled ? "px-2 sm:px-3" : "px-3 sm:px-4"
+        }`}
+      >
         {/* Logo */}
         <Link href="/" className="text-lg sm:text-xl font-bold text-foreground">
           RoboSource
