@@ -37,16 +37,16 @@ export function Navbar() {
 
         {/* Desktop Navigation Links */}
         <div className="hidden items-center gap-6 lg:gap-8 lg:flex">
-          <Link href="#mieten" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+          <Link href="/mieten" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
             Roboter mieten
           </Link>
-          <Link href="#verkaufen" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
-            Roboter verkaufen
+          <Link href="/kaufen" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+            Roboter kaufen
           </Link>
-          <Link href="#funktioniert" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+          <Link href="/#funktioniert" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
             Wie es funktioniert
           </Link>
-          <Link href="#haendler" className="text-sm font-medium text-primary transition-colors hover:text-primary/80">
+          <Link href="/#haendler" className="text-sm font-medium text-primary transition-colors hover:text-primary/80">
             Händler werden
           </Link>
         </div>
@@ -71,28 +71,28 @@ export function Navbar() {
         <div className="lg:hidden border-t border-border bg-background/95 backdrop-blur-md">
           <div className="container mx-auto px-3 py-4 space-y-3">
             <Link
-              href="#mieten"
+              href="/mieten"
               className="block text-sm text-muted-foreground transition-colors hover:text-foreground py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               Roboter mieten
             </Link>
             <Link
-              href="#verkaufen"
+              href="/kaufen"
               className="block text-sm text-muted-foreground transition-colors hover:text-foreground py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Roboter verkaufen
+              Roboter kaufen
             </Link>
             <Link
-              href="#funktioniert"
+              href="/#funktioniert"
               className="block text-sm text-muted-foreground transition-colors hover:text-foreground py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               Wie es funktioniert
             </Link>
             <Link
-              href="#haendler"
+              href="/#haendler"
               className="block text-sm font-medium text-primary transition-colors hover:text-primary/80 py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
