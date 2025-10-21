@@ -1,6 +1,11 @@
+"use client"
+
+import { useState } from "react"
 import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { MapPin } from "lucide-react"
 
 const robots = [
   {
@@ -30,11 +35,30 @@ const robots = [
 ]
 
 export function FeaturedRobots() {
+  const [radius, setRadius] = useState("30")
+
   return (
     <section className="container mx-auto px-3 sm:px-4 py-12 sm:py-16 lg:py-20">
-      <h2 className="mb-8 sm:mb-12 text-balance text-center text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground">
-        Top humanoide Roboter im Angebot
-      </h2>
+      <div className="mb-8 sm:mb-12 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <h2 className="text-balance text-center sm:text-left text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground">
+          Top Humanoide Roboter in Ihrer Nähe
+        </h2>
+        <div className="flex items-center gap-2">
+          <MapPin className="h-4 w-4 text-muted-foreground" />
+          <Select value={radius} onValueChange={setRadius}>
+            <SelectTrigger className="w-[140px] h-9 text-sm">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="10">10 km Radius</SelectItem>
+              <SelectItem value="30">30 km Radius</SelectItem>
+              <SelectItem value="50">50 km Radius</SelectItem>
+              <SelectItem value="100">100 km Radius</SelectItem>
+              <SelectItem value="250">250 km Radius</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
       <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         {robots.map((robot, index) => (
           <Card

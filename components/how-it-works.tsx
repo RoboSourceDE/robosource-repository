@@ -1,8 +1,8 @@
-import { Search, FileCheck, Bot } from "lucide-react"
+import { SearchCheck, FileCheck, Bot } from "lucide-react"
 
 const steps = [
   {
-    icon: Search,
+    icon: SearchCheck,
     title: "1. Humanoide Roboter finden",
     description:
       "Durchsuchen Sie unsere spezialisierte Auswahl an humanoiden Robotern für verschiedene Einsatzbereiche.",
@@ -31,8 +31,8 @@ export function HowItWorks() {
           const Icon = step.icon
           return (
             <div key={index} className="flex flex-col items-center text-center">
-              <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-accent/10">
-                <Icon className="h-10 w-10 text-accent" />
+              <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-primary/10">
+                <Icon className="h-10 w-10 text-primary" />
               </div>
               <h3 className="mb-3 text-xl font-semibold text-foreground">{step.title}</h3>
               <p className="text-pretty text-muted-foreground">{step.description}</p>
