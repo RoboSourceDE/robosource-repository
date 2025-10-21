@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export function Navbar() {
   return (
@@ -23,17 +24,19 @@ export function Navbar() {
           <Link href="#funktioniert" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
             Wie es funktioniert
           </Link>
+          <Link href="#haendler" className="text-sm font-medium text-primary transition-colors hover:text-primary/80">
+            Händler werden
+          </Link>
         </div>
 
-        {/* Auth Buttons */}
         <div className="flex items-center gap-3">
+          <ThemeToggle />
           <Button
             variant="outline"
             className="text-foreground hover:bg-accent hover:text-accent-foreground bg-transparent"
           >
             Login
           </Button>
-          <Button className="bg-primary text-primary-foreground hover:bg-primary/90">Registrieren</Button>
         </div>
       </div>
     </nav>
