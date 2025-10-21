@@ -4,14 +4,28 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Menu } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-md">
-      <div className="container mx-auto flex h-14 sm:h-16 items-center justify-between px-3 sm:px-4">
+    <nav
+      className={`fixed top-0 z-50 w-full border-b border-border backdrop-blur-md transition-all duration-300 ease-in-out ${
+        isScrolled ? "h-[70px] bg-background/95 shadow-sm" : "h-[100px] bg-background/70"
+      }`}
+    >
+      <div className="container mx-auto flex h-full items-center justify-between px-3 sm:px-4">
         {/* Logo */}
         <Link href="/" className="text-lg sm:text-xl font-bold text-foreground">
           RoboSource
