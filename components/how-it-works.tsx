@@ -1,22 +1,22 @@
-import { Search, FileCheck, Truck } from "lucide-react"
+import { Search, FileCheck, Bot } from "lucide-react"
 
 const steps = [
   {
     icon: Search,
-    title: "1. Suchen & Finden",
-    description: "Durchsuchen Sie hunderte von Robotern mit präzisen Filtern für Ihre spezifischen Anforderungen.",
+    title: "1. Humanoide Roboter finden",
+    description:
+      "Durchsuchen Sie unsere spezialisierte Auswahl an humanoiden Robotern für verschiedene Einsatzbereiche.",
   },
   {
     icon: FileCheck,
-    title: "2. Sicher Buchen oder Verkaufen",
+    title: "2. Sicher Mieten oder Kaufen",
     description:
       "Mieten oder kaufen Sie direkt über unsere Plattform mit transparenten Verträgen und sicherer Zahlungsabwicklung.",
   },
   {
-    icon: Truck,
+    icon: Bot,
     title: "3. Einsetzen & Profitieren",
-    description:
-      "Erhalten Sie Ihren Roboter pünktlich zum Einsatz oder vermarkten Sie Ihre ungenutzte Hardware an ein breites Publikum.",
+    description: "Erhalten Sie Ihren humanoiden Roboter pünktlich zum Einsatz in Service, Bildung oder Forschung.",
   },
 ]
 

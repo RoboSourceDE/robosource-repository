@@ -1,92 +1,73 @@
 "use client"
 
-import { Search, Filter } from "lucide-react"
+import { Search, Filter, RotateCcw, MapPin } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Slider } from "@/components/ui/slider"
+import { Label } from "@/components/ui/label"
 
 export function RobotFilters() {
   return (
     <div className="w-full space-y-4">
       <div>
         <h2 className="text-2xl font-bold text-foreground">Filter</h2>
-        <p className="text-sm text-muted-foreground mt-1">Suche verfeinern und passende Roboter finden</p>
+        <p className="text-sm text-muted-foreground mt-1">Suche verfeinern und passende humanoide Roboter finden</p>
       </div>
 
       <div className="w-full bg-card border border-border rounded-lg p-6">
-        <div className="flex flex-col lg:flex-row gap-4 items-stretch lg:items-center">
-          {/* Search Input */}
-          <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              type="text"
-              placeholder="Nach Modell oder Hersteller suchen..."
-              className="pl-10 bg-background border-border text-foreground placeholder:text-muted-foreground"
-            />
+        <div className="flex flex-col lg:flex-row gap-6 items-stretch">
+          {/* Left Side: Search and Price Range */}
+          <div className="flex-1 space-y-4">
+            {/* Search Input */}
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input
+                type="text"
+                placeholder="Nach Modell oder Hersteller suchen..."
+                className="pl-10 bg-background border-border text-foreground placeholder:text-muted-foreground"
+              />
+            </div>
+
+            {/* Price Range Filter */}
+            <div className="space-y-3">
+              <Label className="text-sm font-medium text-foreground">Preisspanne (€ / Tag)</Label>
+              <div className="space-y-4">
+                <Slider defaultValue={[0, 1000]} max={1000} step={10} className="w-full" />
+                <div className="flex items-center gap-4">
+                  <Input type="number" placeholder="Min" className="bg-background border-border text-foreground" />
+                  <span className="text-muted-foreground">-</span>
+                  <Input type="number" placeholder="Max" className="bg-background border-border text-foreground" />
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Type Select */}
-          <div className="w-full lg:w-48">
-            <Select defaultValue="alle-typen">
-              <SelectTrigger className="bg-background border-border text-foreground">
-                <SelectValue placeholder="Typ wählen" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="alle-typen">Alle Typen</SelectItem>
-                <SelectItem value="mieten">Mieten</SelectItem>
-                <SelectItem value="kaufen">Kaufen</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+          {/* Right Side: Filter Buttons */}
+          <div className="flex flex-col lg:flex-row gap-3 lg:items-end lg:ml-auto">
+            {/* Location Filter Button */}
+            <Button
+              variant="outline"
+              className="w-full lg:w-auto border-border text-foreground hover:bg-accent/10 hover:text-accent bg-transparent"
+            >
+              <MapPin className="mr-2 h-4 w-4" />
+              Standort filtern
+            </Button>
 
-          {/* Category Select */}
-          <div className="w-full lg:w-48">
-            <Select defaultValue="alle-kategorien">
-              <SelectTrigger className="bg-background border-border text-foreground">
-                <SelectValue placeholder="Kategorie wählen" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="alle-kategorien">Alle Kategorien</SelectItem>
-                <SelectItem value="industrie">Industrie</SelectItem>
-                <SelectItem value="logistik">Logistik</SelectItem>
-                <SelectItem value="service">Service</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+            {/* Apply Filter Button */}
+            <Button className="w-full lg:w-auto bg-primary hover:bg-primary/90 text-primary-foreground">
+              <Filter className="mr-2 h-4 w-4" />
+              Filter anwenden
+            </Button>
 
-          {/* Location Select */}
-          <div className="w-full lg:w-48">
-            <Select defaultValue="alle-standorte">
-              <SelectTrigger className="bg-background border-border text-foreground">
-                <SelectValue placeholder="Standort wählen" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="alle-standorte">Alle Standorte</SelectItem>
-                <SelectItem value="baden-wuerttemberg">Baden-Württemberg</SelectItem>
-                <SelectItem value="bayern">Bayern</SelectItem>
-                <SelectItem value="berlin">Berlin</SelectItem>
-                <SelectItem value="brandenburg">Brandenburg</SelectItem>
-                <SelectItem value="bremen">Bremen</SelectItem>
-                <SelectItem value="hamburg">Hamburg</SelectItem>
-                <SelectItem value="hessen">Hessen</SelectItem>
-                <SelectItem value="mecklenburg-vorpommern">Mecklenburg-Vorpommern</SelectItem>
-                <SelectItem value="niedersachsen">Niedersachsen</SelectItem>
-                <SelectItem value="nordrhein-westfalen">Nordrhein-Westfalen</SelectItem>
-                <SelectItem value="rheinland-pfalz">Rheinland-Pfalz</SelectItem>
-                <SelectItem value="saarland">Saarland</SelectItem>
-                <SelectItem value="sachsen">Sachsen</SelectItem>
-                <SelectItem value="sachsen-anhalt">Sachsen-Anhalt</SelectItem>
-                <SelectItem value="schleswig-holstein">Schleswig-Holstein</SelectItem>
-                <SelectItem value="thueringen">Thüringen</SelectItem>
-              </SelectContent>
-            </Select>
+            {/* Reset Button */}
+            <Button
+              variant="outline"
+              className="w-full lg:w-auto border-border text-foreground hover:bg-destructive/10 hover:text-destructive bg-transparent"
+            >
+              <RotateCcw className="mr-2 h-4 w-4" />
+              Zurücksetzen
+            </Button>
           </div>
-
-          {/* Search Button */}
-          <Button className="w-full lg:w-auto bg-primary hover:bg-primary/90 text-primary-foreground">
-            <Filter className="mr-2 h-4 w-4" />
-            Suchen
-          </Button>
         </div>
       </div>
     </div>
