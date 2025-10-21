@@ -1,0 +1,27 @@
+import { Navbar } from "@/components/navbar"
+import { HeroSection } from "@/components/hero-section"
+import { HowItWorks } from "@/components/how-it-works"
+import { RobotFilters } from "@/components/robot-filters"
+import { FeaturedRobots } from "@/components/featured-robots"
+import { CTASection } from "@/components/cta-section"
+import { Footer } from "@/components/footer"
+
+export default function Home() {
+  return (
+    <div className="min-h-screen bg-[#111827]">
+      <Navbar />
+      <main>
+        <HeroSection />
+        <HowItWorks />
+        <section className="py-12 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <RobotFilters />
+          </div>
+        </section>
+        <FeaturedRobots />
+        <CTASection />
+      </main>
+      <Footer />
+    </div>
+  )
+}
