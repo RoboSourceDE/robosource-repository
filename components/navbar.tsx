@@ -84,11 +84,12 @@ export function Navbar() {
         <div className="flex items-center gap-2 sm:gap-3">
           <ThemeToggle />
           <Button
+            asChild
             variant="outline"
             size="sm"
             className="text-foreground hover:bg-accent hover:text-accent-foreground bg-transparent hidden sm:flex"
           >
-            Login
+            <Link href="/login">Login</Link>
           </Button>
           <Button variant="ghost" size="sm" className="lg:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             <Menu className="h-5 w-5" />
@@ -137,11 +138,12 @@ export function Navbar() {
               Über Uns
             </Link>
             <Button
+              asChild
               variant="outline"
               size="sm"
               className="w-full text-foreground hover:bg-accent hover:text-accent-foreground bg-transparent"
             >
-              Login
+              <Link href="/login">Login</Link>
             </Button>
           </div>
         </div>
