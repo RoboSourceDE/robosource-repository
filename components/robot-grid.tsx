@@ -99,28 +99,28 @@ export function RobotGrid({ filterType }: RobotGridProps) {
   const filteredRobots = filterType ? allRobots.filter((robot) => robot.type === filterType) : allRobots
 
   return (
-    <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
+    <div className="grid gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
       {filteredRobots.map((robot, index) => (
         <Card
           key={index}
-          className="group overflow-hidden border-border bg-card transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10"
+          className="group overflow-hidden border-border bg-card transition-all hover:-translate-y-2 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10"
         >
           <CardContent className="p-0">
-            <div className="relative h-48 sm:h-56 w-full overflow-hidden bg-muted">
+            <div className="relative h-56 w-full overflow-hidden bg-muted">
               <Image
                 src={robot.image || "/placeholder.svg?height=400&width=400&query=humanoid robot"}
                 alt={robot.name}
                 fill
                 className="object-cover transition-transform group-hover:scale-105"
               />
-              <Badge className="absolute top-3 right-3 bg-primary text-primary-foreground text-xs">
+              <Badge className="absolute top-3 right-3 bg-primary text-primary-foreground text-xs font-semibold">
                 {robot.type === "mieten" ? "Mieten" : "Kaufen"}
               </Badge>
             </div>
-            <div className="space-y-3 p-4 sm:p-5">
+            <div className="space-y-3 p-5">
               <div>
-                <h3 className="text-lg sm:text-xl font-semibold text-card-foreground mb-1">{robot.name}</h3>
-                <Badge variant="secondary" className="bg-accent/20 text-accent text-xs">
+                <h3 className="text-xl font-semibold text-card-foreground mb-2">{robot.name}</h3>
+                <Badge variant="secondary" className="bg-primary/10 text-primary text-xs">
                   {robot.manufacturer}
                 </Badge>
               </div>
@@ -134,9 +134,9 @@ export function RobotGrid({ filterType }: RobotGridProps) {
                   <span>{robot.availability}</span>
                 </div>
               </div>
-              <div className="flex items-center justify-between pt-2 border-t border-border">
-                <p className="text-base sm:text-lg font-bold text-primary">{robot.price}</p>
-                <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+              <div className="flex items-center justify-between pt-3 border-t border-border">
+                <p className="text-lg font-bold text-primary">{robot.price}</p>
+                <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
                   Details
                 </Button>
               </div>

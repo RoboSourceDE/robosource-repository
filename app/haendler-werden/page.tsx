@@ -6,6 +6,7 @@ import { MerchantProcess } from "@/components/merchant/merchant-process"
 import { MerchantPricing } from "@/components/merchant/merchant-pricing"
 import { MerchantRequirements } from "@/components/merchant/merchant-requirements"
 import { MerchantFAQ } from "@/components/merchant/merchant-faq"
+import { MerchantContact } from "@/components/merchant/merchant-contact"
 import { MerchantCTA } from "@/components/merchant/merchant-cta"
 
 export default function HaendlerWerdenPage() {
@@ -19,6 +20,7 @@ export default function HaendlerWerdenPage() {
         <MerchantPricing />
         <MerchantRequirements />
         <MerchantFAQ />
+        <MerchantContact />
         <MerchantCTA />
       </main>
       <Footer />
