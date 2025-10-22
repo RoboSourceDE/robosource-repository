@@ -12,6 +12,8 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const pathname = usePathname()
 
+  console.log("[v0] Navbar rendering, pathname:", pathname)
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0)

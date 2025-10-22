@@ -9,6 +9,8 @@ import { Footer } from "@/components/footer"
 import { SourceAIChat } from "@/components/source-ai-chat"
 
 export default function Home() {
+  console.log("[v0] Home page rendering")
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />

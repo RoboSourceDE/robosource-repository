@@ -6,6 +6,8 @@ import { useEffect, useState } from "react"
 export function HeroSection() {
   const [opacity, setOpacity] = useState(1)
 
+  console.log("[v0] HeroSection rendering with opacity:", opacity)
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY
