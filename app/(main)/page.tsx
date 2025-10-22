@@ -1,4 +1,5 @@
 import { HeroSection } from "@/components/hero-section"
+import { NearbyRobots } from "@/components/nearby-robots"
 import { RobotFilters } from "@/components/robot-filters"
 import { TrustSignals } from "@/components/trust-signals"
 import { HowItWorks } from "@/components/how-it-works"
@@ -12,26 +13,28 @@ export default function Home() {
       {/* Section 1: Hero Section */}
       <HeroSection />
 
-      {/* Section 2: Quick Search Module */}
+      <NearbyRobots />
+
+      {/* Section 3: Quick Search Module */}
       <section className="py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <RobotFilters />
         </div>
       </section>
 
-      {/* Section 3: Trust Signals / Social Proof */}
+      {/* Section 4: Trust Signals / Social Proof */}
       <TrustSignals />
 
-      {/* Section 4: So funktioniert's */}
+      {/* Section 5: So funktioniert's */}
       <HowItWorks />
 
-      {/* Section 5: Product Showcase */}
+      {/* Section 6: Product Showcase */}
       <FeaturedRobots />
 
-      {/* Section 6: Secondary CTA - Händler werden */}
+      {/* Section 7: Secondary CTA - Händler werden */}
       <MerchantCTASection />
 
-      {/* Section 7: Content & Authority */}
+      {/* Section 8: Content & Authority */}
       <ContentAuthority />
     </div>
   )
