@@ -6,6 +6,7 @@ import { FeaturedRobots } from "@/components/featured-robots"
 import { UserReviews } from "@/components/user-reviews"
 import { CTASection } from "@/components/cta-section"
 import { Footer } from "@/components/footer"
+import { SourceAIChat } from "@/components/source-ai-chat"
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
         <CTASection />
       </main>
       <Footer />
+      <SourceAIChat />
     </div>
   )
 }

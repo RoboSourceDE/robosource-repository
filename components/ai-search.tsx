@@ -10,7 +10,7 @@ export function AISearch() {
         <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/20">
           <Sparkles className="h-4 w-4 text-primary" />
         </div>
-        <h2 className="text-base sm:text-lg font-bold text-foreground">KI-gestützte Suche</h2>
+        <h2 className="text-base sm:text-lg font-bold text-foreground">Source AI</h2>
       </div>
       <div className="relative">
         <Input
