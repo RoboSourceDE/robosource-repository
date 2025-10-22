@@ -70,7 +70,12 @@ export function Navbar() {
           >
             Wie es funktioniert
           </Link>
-          <Link href="/#haendler" className="text-sm font-medium text-primary transition-colors hover:text-primary/80">
+          <Link
+            href="/haendler-werden"
+            className={`text-sm font-medium transition-colors ${
+              isActive("/haendler-werden") ? "text-primary" : "text-primary hover:text-primary/80"
+            }`}
+          >
             Händler werden
           </Link>
         </div>
@@ -122,8 +127,10 @@ export function Navbar() {
               Wie es funktioniert
             </Link>
             <Link
-              href="/#haendler"
-              className="block text-sm font-medium text-primary transition-colors hover:text-primary/80 py-2"
+              href="/haendler-werden"
+              className={`block text-sm font-medium transition-colors py-2 ${
+                isActive("/haendler-werden") ? "text-primary" : "text-primary hover:text-primary/80"
+              }`}
               onClick={() => setMobileMenuOpen(false)}
             >
               Händler werden
