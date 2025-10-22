@@ -86,8 +86,8 @@ export function Navbar() {
           </Link>
           <Link
             href="/haendler-werden"
-            className={`text-sm font-medium transition-colors ${
-              isActive("/haendler-werden") ? "text-primary" : "text-primary hover:text-primary/80"
+            className={`text-sm transition-colors ${
+              isActive("/haendler-werden") ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
             }`}
           >
             Händler werden
@@ -143,8 +143,10 @@ export function Navbar() {
             </Link>
             <Link
               href="/haendler-werden"
-              className={`block text-sm font-medium transition-colors py-2 ${
-                isActive("/haendler-werden") ? "text-primary" : "text-primary hover:text-primary/80"
+              className={`block text-sm transition-colors py-2 ${
+                isActive("/haendler-werden")
+                  ? "text-primary font-medium"
+                  : "text-muted-foreground hover:text-foreground"
               }`}
               onClick={() => setMobileMenuOpen(false)}
             >
