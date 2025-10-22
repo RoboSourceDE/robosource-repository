@@ -6,6 +6,7 @@ import { Slider } from "@/components/ui/slider"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useState, useEffect } from "react"
+import { useSearchParams } from "next/navigation"
 
 interface MarketplaceFiltersProps {
   filterType: "mieten" | "kaufen"
@@ -13,6 +14,14 @@ interface MarketplaceFiltersProps {
 
 export function MarketplaceFilters({ filterType }: MarketplaceFiltersProps) {
   const [isScrolled, setIsScrolled] = useState(false)
+  const searchParams = useSearchParams()
+
+  const [usage, setUsage] = useState(searchParams.get("usage") || "alle")
+  const [application, setApplication] = useState(searchParams.get("application") || "alle-anwendungen")
+  const [brand, setBrand] = useState(searchParams.get("brand") || "alle-marken")
+  const [priceMin, setPriceMin] = useState(searchParams.get("priceMin") || "0")
+  const [priceMax, setPriceMax] = useState(searchParams.get("priceMax") || "1000")
+  const [location, setLocation] = useState(searchParams.get("location") || "alle-standorte")
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +31,20 @@ export function MarketplaceFilters({ filterType }: MarketplaceFiltersProps) {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  const handleApplyFilters = () => {
+    console.log("[v0] Applying filters:", { usage, application, brand, priceMin, priceMax, location })
+    // In a real app, this would trigger a data fetch or filter the displayed robots
+  }
+
+  const handleReset = () => {
+    setUsage("alle")
+    setApplication("alle-anwendungen")
+    setBrand("alle-marken")
+    setPriceMin("0")
+    setPriceMax("1000")
+    setLocation("alle-standorte")
+  }
 
   return (
     <>
@@ -48,7 +71,7 @@ export function MarketplaceFilters({ filterType }: MarketplaceFiltersProps) {
           {/* Gewerblich oder Privat */}
           <div className="space-y-2">
             <Label className="text-xs sm:text-sm font-medium text-foreground">Nutzung</Label>
-            <Select defaultValue="alle">
+            <Select value={usage} onValueChange={setUsage}>
               <SelectTrigger className="w-full bg-background border-border text-foreground text-sm h-10">
                 <SelectValue />
               </SelectTrigger>
@@ -63,7 +86,7 @@ export function MarketplaceFilters({ filterType }: MarketplaceFiltersProps) {
           {/* Anwendung */}
           <div className="space-y-2">
             <Label className="text-xs sm:text-sm font-medium text-foreground">Anwendung</Label>
-            <Select defaultValue="alle-anwendungen">
+            <Select value={application} onValueChange={setApplication}>
               <SelectTrigger className="w-full bg-background border-border text-foreground text-sm h-10">
                 <SelectValue />
               </SelectTrigger>
@@ -81,7 +104,7 @@ export function MarketplaceFilters({ filterType }: MarketplaceFiltersProps) {
           {/* Marke */}
           <div className="space-y-2">
             <Label className="text-xs sm:text-sm font-medium text-foreground">Marke</Label>
-            <Select defaultValue="alle-marken">
+            <Select value={brand} onValueChange={setBrand}>
               <SelectTrigger className="w-full bg-background border-border text-foreground text-sm h-10">
                 <SelectValue />
               </SelectTrigger>
@@ -135,18 +158,27 @@ export function MarketplaceFilters({ filterType }: MarketplaceFiltersProps) {
             <Label className="text-xs sm:text-sm font-medium text-foreground">
               Preisspanne (€ / {filterType === "kaufen" ? "Stück" : "Tag"})
             </Label>
-            <Slider defaultValue={[0, 1000]} max={1000} step={10} className="w-full" />
+            <Slider
+              value={[Number.parseInt(priceMin), Number.parseInt(priceMax)]}
+              onValueChange={(values) => {
+                setPriceMin(values[0].toString())
+                setPriceMax(values[1].toString())
+              }}
+              max={1000}
+              step={10}
+              className="w-full"
+            />
             <div className="flex items-center gap-2 text-xs text-muted-foreground">
-              <span>0€</span>
+              <span>{priceMin}€</span>
               <span className="flex-1 text-center">-</span>
-              <span>1000€+</span>
+              <span>{priceMax}€+</span>
             </div>
           </div>
 
           {/* Standort */}
           <div className="space-y-2 lg:col-span-2">
             <Label className="text-xs sm:text-sm font-medium text-foreground">Standort</Label>
-            <Select defaultValue="alle-standorte">
+            <Select value={location} onValueChange={setLocation}>
               <SelectTrigger className="w-full bg-background border-border text-foreground text-sm h-10">
                 <SelectValue />
               </SelectTrigger>
@@ -174,13 +206,18 @@ export function MarketplaceFilters({ filterType }: MarketplaceFiltersProps) {
 
           {/* Action Buttons */}
           <div className={`flex gap-2 pt-2 ${!isScrolled ? "lg:col-span-2" : "flex-col"}`}>
-            <Button size="sm" className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground text-sm h-10">
+            <Button
+              size="sm"
+              onClick={handleApplyFilters}
+              className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground text-sm h-10"
+            >
               <Filter className="mr-2 h-4 w-4" />
               Anwenden
             </Button>
             <Button
               variant="outline"
               size="sm"
+              onClick={handleReset}
               className="flex-1 border-border text-foreground hover:bg-destructive/10 hover:text-destructive bg-transparent text-sm h-10"
             >
               <RotateCcw className="mr-2 h-4 w-4" />

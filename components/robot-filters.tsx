@@ -7,9 +7,45 @@ import { Slider } from "@/components/ui/slider"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 
 export function RobotFilters() {
   const [isExpanded, setIsExpanded] = useState(false)
+  const router = useRouter()
+
+  const [filterType, setFilterType] = useState("alle-typen")
+  const [usage, setUsage] = useState("alle")
+  const [application, setApplication] = useState("alle-anwendungen")
+  const [brand, setBrand] = useState("alle-marken")
+  const [priceMin, setPriceMin] = useState("0")
+  const [priceMax, setPriceMax] = useState("1000")
+  const [location, setLocation] = useState("alle-standorte")
+
+  const handleApplyFilters = () => {
+    const params = new URLSearchParams()
+
+    if (usage !== "alle") params.set("usage", usage)
+    if (application !== "alle-anwendungen") params.set("application", application)
+    if (brand !== "alle-marken") params.set("brand", brand)
+    if (priceMin !== "0") params.set("priceMin", priceMin)
+    if (priceMax !== "1000") params.set("priceMax", priceMax)
+    if (location !== "alle-standorte") params.set("location", location)
+
+    // Navigate to appropriate marketplace page based on filter type
+    const targetPage = filterType === "mieten" ? "/mieten" : filterType === "kaufen" ? "/kaufen" : "/mieten"
+    const queryString = params.toString()
+    router.push(`${targetPage}${queryString ? `?${queryString}` : ""}`)
+  }
+
+  const handleReset = () => {
+    setFilterType("alle-typen")
+    setUsage("alle")
+    setApplication("alle-anwendungen")
+    setBrand("alle-marken")
+    setPriceMin("0")
+    setPriceMax("1000")
+    setLocation("alle-standorte")
+  }
 
   return (
     <div className="w-full space-y-3 sm:space-y-4">
@@ -25,7 +61,7 @@ export function RobotFilters() {
           {/* 1. Kauf oder Miete - Always visible */}
           <div className="space-y-2">
             <Label className="text-xs sm:text-sm font-medium text-foreground">Kauf oder Miete</Label>
-            <Select defaultValue="alle-typen">
+            <Select value={filterType} onValueChange={setFilterType}>
               <SelectTrigger className="w-full bg-background border-border text-foreground text-sm">
                 <SelectValue placeholder="Typ auswählen" />
               </SelectTrigger>
@@ -61,7 +97,7 @@ export function RobotFilters() {
               {/* 2. Gewerblich oder Privat */}
               <div className="space-y-2">
                 <Label className="text-xs sm:text-sm font-medium text-foreground">Gewerblich oder Privat</Label>
-                <Select defaultValue="alle">
+                <Select value={usage} onValueChange={setUsage}>
                   <SelectTrigger className="w-full bg-background border-border text-foreground text-sm">
                     <SelectValue placeholder="Nutzung auswählen" />
                   </SelectTrigger>
@@ -76,7 +112,7 @@ export function RobotFilters() {
               {/* 3. Anwendung */}
               <div className="space-y-2">
                 <Label className="text-xs sm:text-sm font-medium text-foreground">Anwendung</Label>
-                <Select defaultValue="alle-anwendungen">
+                <Select value={application} onValueChange={setApplication}>
                   <SelectTrigger className="w-full bg-background border-border text-foreground text-sm">
                     <SelectValue placeholder="Anwendung auswählen" />
                   </SelectTrigger>
@@ -94,7 +130,7 @@ export function RobotFilters() {
               {/* 4. Marke */}
               <div className="space-y-2">
                 <Label className="text-xs sm:text-sm font-medium text-foreground">Marke</Label>
-                <Select defaultValue="alle-marken">
+                <Select value={brand} onValueChange={setBrand}>
                   <SelectTrigger className="w-full bg-background border-border text-foreground text-sm">
                     <SelectValue placeholder="Marke auswählen" />
                   </SelectTrigger>
@@ -118,12 +154,16 @@ export function RobotFilters() {
                     <Input
                       type="number"
                       placeholder="Min"
+                      value={priceMin}
+                      onChange={(e) => setPriceMin(e.target.value)}
                       className="bg-background border-border text-foreground text-sm"
                     />
                     <span className="text-muted-foreground text-sm">-</span>
                     <Input
                       type="number"
                       placeholder="Max"
+                      value={priceMax}
+                      onChange={(e) => setPriceMax(e.target.value)}
                       className="bg-background border-border text-foreground text-sm"
                     />
                   </div>
@@ -133,7 +173,7 @@ export function RobotFilters() {
               {/* 6. Standort */}
               <div className="space-y-2">
                 <Label className="text-xs sm:text-sm font-medium text-foreground">Standort</Label>
-                <Select defaultValue="alle-standorte">
+                <Select value={location} onValueChange={setLocation}>
                   <SelectTrigger className="w-full bg-background border-border text-foreground text-sm">
                     <SelectValue placeholder="Standort auswählen" />
                   </SelectTrigger>
@@ -165,6 +205,7 @@ export function RobotFilters() {
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 pt-2">
             <Button
               size="sm"
+              onClick={handleApplyFilters}
               className="w-full sm:flex-1 bg-primary hover:bg-primary/90 text-primary-foreground text-sm"
             >
               <Filter className="mr-2 h-4 w-4" />
@@ -174,6 +215,7 @@ export function RobotFilters() {
             <Button
               variant="outline"
               size="sm"
+              onClick={handleReset}
               className="w-full sm:w-auto border-border text-foreground hover:bg-destructive/10 hover:text-destructive bg-transparent text-sm"
             >
               <RotateCcw className="mr-2 h-4 w-4" />
