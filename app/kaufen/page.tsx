@@ -1,34 +1,56 @@
+"use client"
+
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import { AISearch } from "@/components/ai-search"
-import { MarketplaceFilters } from "@/components/marketplace-filters"
-import { RobotGrid } from "@/components/robot-grid"
+import { AISearchAdvanced } from "@/components/ai-search-advanced"
+import { MarketplaceFiltersAI } from "@/components/marketplace-filters-ai"
+import { RobotGridAI } from "@/components/robot-grid-ai"
+import { ChevronRight } from "lucide-react"
+import { useState } from "react"
+import Link from "next/link"
 
 export default function KaufenPage() {
+  const [aiFilters, setAiFilters] = useState<Record<string, string>>({})
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
 
       <main className="pt-[100px]">
-        <section className="py-12 md:py-16 px-4 md:px-6 lg:px-8 bg-gradient-to-b from-primary/5 to-background">
-          <div className="max-w-7xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-4">Roboter Kaufen</h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Investieren Sie in humanoide Roboter für langfristige Automatisierung
-            </p>
+        {/* Breadcrumbs & Header Section */}
+        <section className="py-8 md:py-12 px-4 md:px-6 lg:px-8 bg-gradient-to-b from-primary/5 to-background">
+          <div className="max-w-7xl mx-auto">
+            {/* Breadcrumbs */}
+            <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
+              <Link href="/" className="hover:text-primary transition-colors">
+                Home
+              </Link>
+              <ChevronRight className="h-4 w-4" />
+              <span className="text-foreground font-medium">Roboter kaufen</span>
+            </nav>
+
+            {/* Page Heading */}
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+              Finden Sie Ihren humanoiden Roboter
+            </h1>
+
+            {/* AI Search */}
+            <div className="mt-8">
+              <AISearchAdvanced filterType="kaufen" onFilterChange={setAiFilters} />
+            </div>
           </div>
         </section>
 
+        {/* Hybrid Interface: Filters + Results */}
         <section className="py-8 md:py-12 px-4 md:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
-            <div className="mb-8">
-              <AISearch />
-            </div>
-
             <div className="flex flex-col lg:flex-row gap-8">
-              <MarketplaceFilters filterType="kaufen" />
+              {/* Left: Filter Sidebar */}
+              <MarketplaceFiltersAI filterType="kaufen" aiFilters={aiFilters} />
+
+              {/* Right: Results Display */}
               <div className="flex-1 min-w-0">
-                <RobotGrid filterType="kaufen" />
+                <RobotGridAI filterType="kaufen" />
               </div>
             </div>
           </div>
