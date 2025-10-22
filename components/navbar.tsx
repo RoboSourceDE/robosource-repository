@@ -5,10 +5,12 @@ import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Menu } from "lucide-react"
 import { useState, useEffect } from "react"
+import { usePathname } from "next/navigation"
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,6 +20,11 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  const isActive = (path: string) => {
+    if (path === "/") return pathname === "/"
+    return pathname.startsWith(path)
+  }
 
   return (
     <nav
@@ -37,13 +44,28 @@ export function Navbar() {
 
         {/* Desktop Navigation Links */}
         <div className="hidden items-center gap-6 lg:gap-8 lg:flex">
-          <Link href="/mieten" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+          <Link
+            href="/mieten"
+            className={`text-sm transition-colors ${
+              isActive("/mieten") ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
             Roboter mieten
           </Link>
-          <Link href="/kaufen" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+          <Link
+            href="/kaufen"
+            className={`text-sm transition-colors ${
+              isActive("/kaufen") ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
             Roboter kaufen
           </Link>
-          <Link href="/#funktioniert" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+          <Link
+            href="/#funktioniert"
+            className={`text-sm transition-colors ${
+              isActive("/#funktioniert") ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
             Wie es funktioniert
           </Link>
           <Link href="/#haendler" className="text-sm font-medium text-primary transition-colors hover:text-primary/80">
@@ -72,21 +94,27 @@ export function Navbar() {
           <div className="container mx-auto px-3 py-4 space-y-3">
             <Link
               href="/mieten"
-              className="block text-sm text-muted-foreground transition-colors hover:text-foreground py-2"
+              className={`block text-sm transition-colors py-2 ${
+                isActive("/mieten") ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
+              }`}
               onClick={() => setMobileMenuOpen(false)}
             >
               Roboter mieten
             </Link>
             <Link
               href="/kaufen"
-              className="block text-sm text-muted-foreground transition-colors hover:text-foreground py-2"
+              className={`block text-sm transition-colors py-2 ${
+                isActive("/kaufen") ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
+              }`}
               onClick={() => setMobileMenuOpen(false)}
             >
               Roboter kaufen
             </Link>
             <Link
               href="/#funktioniert"
-              className="block text-sm text-muted-foreground transition-colors hover:text-foreground py-2"
+              className={`block text-sm transition-colors py-2 ${
+                isActive("/#funktioniert") ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
+              }`}
               onClick={() => setMobileMenuOpen(false)}
             >
               Wie es funktioniert
