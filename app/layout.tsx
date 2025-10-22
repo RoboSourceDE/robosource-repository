@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="de" suppressHydrationWarning>
       <body className={`${inter.className} antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} storageKey="robosource-theme">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} storageKey="robosource-theme">
           {children}
         </ThemeProvider>
         <Analytics />

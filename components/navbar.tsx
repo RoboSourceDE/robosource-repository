@@ -6,6 +6,7 @@ import { ThemeToggle } from "@/components/theme-toggle"
 import { Menu } from "lucide-react"
 import { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
+import Image from "next/image"
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -23,6 +24,21 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden"
+      document.body.style.paddingRight = "var(--scrollbar-width, 0px)"
+    } else {
+      document.body.style.overflow = ""
+      document.body.style.paddingRight = ""
+    }
+
+    return () => {
+      document.body.style.overflow = ""
+      document.body.style.paddingRight = ""
+    }
+  }, [mobileMenuOpen])
+
   const isActive = (path: string) => {
     if (path === "/") return pathname === "/"
     return pathname.startsWith(path)
@@ -39,9 +55,15 @@ export function Navbar() {
           isScrolled ? "px-2 sm:px-3" : "px-3 sm:px-4"
         }`}
       >
-        {/* Logo */}
-        <Link href="/" className="text-lg sm:text-xl font-bold text-foreground">
-          RoboSource
+        <Link href="/" className="flex items-center gap-2 sm:gap-3">
+          <Image
+            src="/robosource-logo.png"
+            alt="RoboSource Logo"
+            width={isScrolled ? 32 : 40}
+            height={isScrolled ? 32 : 40}
+            className="transition-all duration-300"
+          />
+          <span className="text-lg sm:text-xl font-bold text-foreground">RoboSource</span>
         </Link>
 
         {/* Desktop Navigation Links */}
@@ -64,8 +86,8 @@ export function Navbar() {
           </Link>
           <Link
             href="/haendler-werden"
-            className={`text-sm font-medium transition-colors ${
-              isActive("/haendler-werden") ? "text-primary" : "text-primary hover:text-primary/80"
+            className={`text-sm transition-colors ${
+              isActive("/haendler-werden") ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
             }`}
           >
             Händler werden
@@ -84,11 +106,12 @@ export function Navbar() {
         <div className="flex items-center gap-2 sm:gap-3">
           <ThemeToggle />
           <Button
+            asChild
             variant="outline"
             size="sm"
             className="text-foreground hover:bg-accent hover:text-accent-foreground bg-transparent hidden sm:flex"
           >
-            Login
+            <Link href="/login">Login</Link>
           </Button>
           <Button variant="ghost" size="sm" className="lg:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             <Menu className="h-5 w-5" />
@@ -120,8 +143,10 @@ export function Navbar() {
             </Link>
             <Link
               href="/haendler-werden"
-              className={`block text-sm font-medium transition-colors py-2 ${
-                isActive("/haendler-werden") ? "text-primary" : "text-primary hover:text-primary/80"
+              className={`block text-sm transition-colors py-2 ${
+                isActive("/haendler-werden")
+                  ? "text-primary font-medium"
+                  : "text-muted-foreground hover:text-foreground"
               }`}
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -137,11 +162,12 @@ export function Navbar() {
               Über Uns
             </Link>
             <Button
+              asChild
               variant="outline"
               size="sm"
               className="w-full text-foreground hover:bg-accent hover:text-accent-foreground bg-transparent"
             >
-              Login
+              <Link href="/login">Login</Link>
             </Button>
           </div>
         </div>

@@ -1,5 +1,3 @@
-import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
 import { MerchantHero } from "@/components/merchant/merchant-hero"
 import { MerchantBenefits } from "@/components/merchant/merchant-benefits"
 import { MerchantProcess } from "@/components/merchant/merchant-process"
@@ -11,19 +9,15 @@ import { MerchantCTA } from "@/components/merchant/merchant-cta"
 
 export default function HaendlerWerdenPage() {
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      <main className="pt-[100px]">
-        <MerchantHero />
-        <MerchantBenefits />
-        <MerchantProcess />
-        <MerchantPricing />
-        <MerchantRequirements />
-        <MerchantFAQ />
-        <MerchantContact />
-        <MerchantCTA />
-      </main>
-      <Footer />
-    </div>
+    <main>
+      <MerchantHero />
+      <MerchantBenefits />
+      <MerchantProcess />
+      <MerchantPricing />
+      <MerchantRequirements />
+      <MerchantFAQ />
+      <MerchantContact />
+      <MerchantCTA />
+    </main>
   )
 }

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Sparkles, X, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -15,6 +15,22 @@ export function SourceAIChat() {
       content: "Hallo! Ich bin Source AI, Ihr persönlicher Roboter-Assistent. Wie kann ich Ihnen heute helfen?",
     },
   ])
+
+  useEffect(() => {
+    if (isOpen) {
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
+      document.body.style.overflow = "hidden"
+      document.body.style.paddingRight = `${scrollbarWidth}px`
+    } else {
+      document.body.style.overflow = ""
+      document.body.style.paddingRight = ""
+    }
+
+    return () => {
+      document.body.style.overflow = ""
+      document.body.style.paddingRight = ""
+    }
+  }, [isOpen])
 
   const handleSend = () => {
     if (!message.trim()) return

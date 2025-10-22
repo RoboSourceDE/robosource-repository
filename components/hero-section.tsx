@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 
 export function HeroSection() {
   const [opacity, setOpacity] = useState(1)
@@ -30,11 +31,11 @@ export function HeroSection() {
     <section className="min-h-screen flex items-center justify-center px-4 md:px-6 lg:px-8 bg-gradient-to-b from-primary/5 to-background relative overflow-hidden">
       <div className="absolute inset-0 z-0">
         <img
-          src="/futuristic-white-robotic-arm-3d-render-on-dark-bac.jpg"
+          src="/humanoid-robot-modern-technology.jpg"
           alt="Humanoid Robot"
-          className="w-full h-full object-cover opacity-20"
+          className="w-full h-full object-cover opacity-30"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/70 to-background" />
       </div>
 
       <div
@@ -44,6 +45,11 @@ export function HeroSection() {
           transform: `scale(${scale})`,
         }}
       >
+        <div className="flex items-center justify-center gap-3 mb-6">
+          <Image src="/robosource-logo.png" alt="RoboSource Logo" width={60} height={60} className="animate-pulse" />
+          <span className="text-3xl md:text-4xl font-bold text-primary">RoboSource</span>
+        </div>
+
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 text-balance">
           Die Handelsplattform für <span className="text-primary">humanoide Roboter</span> in Deutschland
         </h1>
