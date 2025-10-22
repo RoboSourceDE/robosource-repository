@@ -1,10 +1,27 @@
 import Link from "next/link"
 
 const footerLinks = {
-  Unternehmen: ["Über uns", "Karriere", "Presse"],
-  Support: ["Kontakt", "FAQ", "Hilfe-Center"],
-  Rechtliches: ["Impressum", "Datenschutz", "AGB"],
-  Schnellzugriffe: ["Kategorien", "Blog", "Marktplatz", "Anbieter werden"],
+  "Über RoboSource": [
+    { label: "Über uns", href: "/ueber-uns" },
+    { label: "Karriere", href: "#" },
+    { label: "Presse", href: "#" },
+  ],
+  "Für Käufer": [
+    { label: "Marktplatz", href: "/kaufen" },
+    { label: "So funktioniert's", href: "/#funktioniert" },
+    { label: "Support", href: "#" },
+  ],
+  "Für Händler": [
+    { label: "Händler werden", href: "/haendler-werden" },
+    { label: "Händler-Login", href: "#" },
+    { label: "Richtlinien", href: "#" },
+  ],
+  "Quick Links": [
+    { label: "Kontakt", href: "#" },
+    { label: "Impressum", href: "#" },
+    { label: "AGB", href: "#" },
+    { label: "Datenschutz", href: "#" },
+  ],
 }
 
 export function Footer() {
@@ -17,12 +34,12 @@ export function Footer() {
               <h3 className="mb-3 sm:mb-4 text-xs sm:text-sm font-semibold text-foreground">{category}</h3>
               <ul className="space-y-1.5 sm:space-y-2">
                 {links.map((link) => (
-                  <li key={link}>
+                  <li key={link.label}>
                     <Link
-                      href="#"
+                      href={link.href}
                       className="text-xs sm:text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
-                      {link}
+                      {link.label}
                     </Link>
                   </li>
                 ))}

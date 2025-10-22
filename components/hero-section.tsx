@@ -27,21 +27,34 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 md:px-6 lg:px-8 bg-gradient-to-b from-primary/5 to-background relative">
+    <section className="min-h-screen flex items-center justify-center px-4 md:px-6 lg:px-8 bg-gradient-to-b from-primary/5 to-background relative overflow-hidden">
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/futuristic-white-robotic-arm-3d-render-on-dark-bac.jpg"
+          alt="Humanoid Robot"
+          className="w-full h-full object-cover opacity-20"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
+      </div>
+
       <div
-        className="max-w-4xl mx-auto text-center transition-all duration-100"
+        className="max-w-4xl mx-auto text-center transition-all duration-100 relative z-10"
         style={{
           opacity,
           transform: `scale(${scale})`,
         }}
       >
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 text-balance">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 text-balance">
           Die Handelsplattform für <span className="text-primary">humanoide Roboter</span> in Deutschland
         </h1>
 
-        <Link href="/mieten" className="inline-block">
+        <p className="text-lg md:text-xl text-muted-foreground mb-8 text-balance">
+          Geprüfte Händler. Transparente Preise. Direkter Vergleich.
+        </p>
+
+        <Link href="/kaufen" className="inline-block">
           <Button size="lg" className="bg-primary hover:bg-primary/90 text-white font-semibold px-8 py-6 text-lg">
-            Jetzt Marktplatz entdecken
+            Jetzt Roboter entdecken
           </Button>
         </Link>
       </div>

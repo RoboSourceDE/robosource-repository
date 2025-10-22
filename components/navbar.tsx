@@ -47,14 +47,6 @@ export function Navbar() {
         {/* Desktop Navigation Links */}
         <div className="hidden items-center gap-6 lg:gap-8 lg:flex">
           <Link
-            href="/mieten"
-            className={`text-sm transition-colors ${
-              isActive("/mieten") ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
-            }`}
-          >
-            Roboter mieten
-          </Link>
-          <Link
             href="/kaufen"
             className={`text-sm transition-colors ${
               isActive("/kaufen") ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
@@ -63,12 +55,12 @@ export function Navbar() {
             Roboter kaufen
           </Link>
           <Link
-            href="/#funktioniert"
+            href="/mieten"
             className={`text-sm transition-colors ${
-              isActive("/#funktioniert") ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
+              isActive("/mieten") ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
             }`}
           >
-            Wie es funktioniert
+            Roboter mieten
           </Link>
           <Link
             href="/haendler-werden"
@@ -77,6 +69,14 @@ export function Navbar() {
             }`}
           >
             Händler werden
+          </Link>
+          <Link
+            href="/ueber-uns"
+            className={`text-sm transition-colors ${
+              isActive("/ueber-uns") ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            Über Uns
           </Link>
         </div>
 
@@ -96,18 +96,10 @@ export function Navbar() {
         </div>
       </div>
 
+      {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="lg:hidden border-t border-border bg-background/95 backdrop-blur-md">
           <div className="container mx-auto px-3 py-4 space-y-3">
-            <Link
-              href="/mieten"
-              className={`block text-sm transition-colors py-2 ${
-                isActive("/mieten") ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
-              }`}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Roboter mieten
-            </Link>
             <Link
               href="/kaufen"
               className={`block text-sm transition-colors py-2 ${
@@ -118,13 +110,13 @@ export function Navbar() {
               Roboter kaufen
             </Link>
             <Link
-              href="/#funktioniert"
+              href="/mieten"
               className={`block text-sm transition-colors py-2 ${
-                isActive("/#funktioniert") ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
+                isActive("/mieten") ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
               }`}
               onClick={() => setMobileMenuOpen(false)}
             >
-              Wie es funktioniert
+              Roboter mieten
             </Link>
             <Link
               href="/haendler-werden"
@@ -134,6 +126,15 @@ export function Navbar() {
               onClick={() => setMobileMenuOpen(false)}
             >
               Händler werden
+            </Link>
+            <Link
+              href="/ueber-uns"
+              className={`block text-sm transition-colors py-2 ${
+                isActive("/ueber-uns") ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
+              }`}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Über Uns
             </Link>
             <Button
               variant="outline"
