@@ -6,7 +6,7 @@ import { AboutCta } from "@/components/about/about-cta"
 
 export default function UeberUnsPage() {
   return (
-    <main className="pt-24">
+    <main className="pt-0">
       <AboutMission />
       <AboutTeam />
       <AboutValues />

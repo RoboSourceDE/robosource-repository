@@ -59,43 +59,43 @@ export function Navbar() {
           <Image
             src="/robosource-logo.png"
             alt="RoboSource Logo"
-            width={isScrolled ? 32 : 40}
-            height={isScrolled ? 32 : 40}
-            className="transition-all duration-300"
+            width={isScrolled ? 40 : 50}
+            height={isScrolled ? 40 : 50}
+            className="transition-all duration-300 drop-shadow-[0_0_8px_rgba(34,197,94,0.3)]"
           />
-          <span className="text-lg sm:text-xl font-bold text-foreground">RoboSource</span>
+          <span className="text-xl sm:text-2xl font-bold text-primary">RoboSource</span>
         </Link>
 
         {/* Desktop Navigation Links */}
         <div className="hidden items-center gap-6 lg:gap-8 lg:flex">
           <Link
             href="/kaufen"
-            className={`text-sm transition-colors ${
-              isActive("/kaufen") ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
+            className={`text-sm font-bold transition-colors ${
+              isActive("/kaufen") ? "text-primary" : "text-muted-foreground hover:text-foreground"
             }`}
           >
             Roboter kaufen
           </Link>
           <Link
             href="/mieten"
-            className={`text-sm transition-colors ${
-              isActive("/mieten") ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
+            className={`text-sm font-bold transition-colors ${
+              isActive("/mieten") ? "text-primary" : "text-muted-foreground hover:text-foreground"
             }`}
           >
             Roboter mieten
           </Link>
           <Link
             href="/haendler-werden"
-            className={`text-sm transition-colors ${
-              isActive("/haendler-werden") ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
+            className={`text-sm font-bold transition-colors ${
+              isActive("/haendler-werden") ? "text-primary" : "text-muted-foreground hover:text-foreground"
             }`}
           >
             Händler werden
           </Link>
           <Link
             href="/ueber-uns"
-            className={`text-sm transition-colors ${
-              isActive("/ueber-uns") ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
+            className={`text-sm font-bold transition-colors ${
+              isActive("/ueber-uns") ? "text-primary" : "text-muted-foreground hover:text-foreground"
             }`}
           >
             Über Uns
@@ -125,8 +125,8 @@ export function Navbar() {
           <div className="container mx-auto px-3 py-4 space-y-3">
             <Link
               href="/kaufen"
-              className={`block text-sm transition-colors py-2 ${
-                isActive("/kaufen") ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
+              className={`block text-sm font-bold transition-colors py-2 ${
+                isActive("/kaufen") ? "text-primary" : "text-muted-foreground hover:text-foreground"
               }`}
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -134,8 +134,8 @@ export function Navbar() {
             </Link>
             <Link
               href="/mieten"
-              className={`block text-sm transition-colors py-2 ${
-                isActive("/mieten") ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
+              className={`block text-sm font-bold transition-colors py-2 ${
+                isActive("/mieten") ? "text-primary" : "text-muted-foreground hover:text-foreground"
               }`}
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -143,10 +143,8 @@ export function Navbar() {
             </Link>
             <Link
               href="/haendler-werden"
-              className={`block text-sm transition-colors py-2 ${
-                isActive("/haendler-werden")
-                  ? "text-primary font-medium"
-                  : "text-muted-foreground hover:text-foreground"
+              className={`block text-sm font-bold transition-colors py-2 ${
+                isActive("/haendler-werden") ? "text-primary" : "text-muted-foreground hover:text-foreground"
               }`}
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -154,8 +152,8 @@ export function Navbar() {
             </Link>
             <Link
               href="/ueber-uns"
-              className={`block text-sm transition-colors py-2 ${
-                isActive("/ueber-uns") ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
+              className={`block text-sm font-bold transition-colors py-2 ${
+                isActive("/ueber-uns") ? "text-primary" : "text-muted-foreground hover:text-foreground"
               }`}
               onClick={() => setMobileMenuOpen(false)}
             >

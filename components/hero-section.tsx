@@ -28,7 +28,7 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 md:px-6 lg:px-8 bg-gradient-to-b from-primary/5 to-background relative overflow-hidden">
+    <section className="min-h-[120vh] flex items-center justify-center px-4 md:px-6 lg:px-8 bg-gradient-to-b from-primary/5 to-background relative overflow-hidden">
       <div className="absolute inset-0 z-0">
         <img
           src="/humanoid-robot-modern-technology.jpg"
@@ -46,8 +46,14 @@ export function HeroSection() {
         }}
       >
         <div className="flex items-center justify-center gap-3 mb-6">
-          <Image src="/robosource-logo.png" alt="RoboSource Logo" width={60} height={60} className="animate-pulse" />
-          <span className="text-3xl md:text-4xl font-bold text-primary">RoboSource</span>
+          <Image
+            src="/robosource-logo.png"
+            alt="RoboSource Logo"
+            width={80}
+            height={80}
+            className="drop-shadow-[0_0_12px_rgba(34,197,94,0.4)]"
+          />
+          <span className="text-4xl md:text-5xl font-bold text-primary">RoboSource</span>
         </div>
 
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 text-balance">
