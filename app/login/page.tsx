@@ -1,10 +1,61 @@
+"use client";
+
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { useState } from 'react'; // Wichtig: useState importieren
+import { useRouter } from 'next/navigation'; // Wichtig: Für die Weiterleitung
+import { Loader2 } from "lucide-react"; // Import für Lade-Icon
 
 export default function LoginPage() {
+  // --- HIER BEGINNT DIE LOGIK ---
+
+  // State-Variablen für das Formular, Fehler und Ladezustand
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  // Helpers initialisieren
+  const router = useRouter();
+  const supabase = createClientComponentClient();
+
+  // Async-Funktion, die beim Absenden des Formulars aufgerufen wird
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); // Verhindert das Neuladen der Seite
+    
+    setLoading(true); // Beginnt den Ladezustand
+    setErrorMsg(''); // Setzt alte Fehlermeldungen zurück
+
+    try {
+      // Supabase-Funktion für den Login-Versuch
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password,
+      });
+
+      if (error) {
+        // Bei Fehler: Fehlermeldung im State speichern
+        console.error("Login-Fehler:", error.message);
+        setErrorMsg("Login fehlgeschlagen. Bitte E-Mail und Passwort prüfen.");
+      } else {
+        // Bei Erfolg: Benutzer zum Dashboard weiterleiten
+        console.log("Erfolgreich eingeloggt:", data.user);
+        router.push('/dashboard'); // Ziel-URL nach Login
+        router.refresh(); // Wichtig, damit die Navbar den neuen Status erkennt
+      }
+    } catch (err) {
+      setErrorMsg("Ein unerwarteter Fehler ist aufgetreten.");
+    } finally {
+      setLoading(false); // Beendet den Ladezustand (egal ob Erfolg oder Fehler)
+    }
+  };
+
+  // --- HIER ENDET DIE LOGIK ---
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-primary/5 to-background px-4 py-8">
       {/* Logo */}
@@ -26,11 +77,24 @@ export default function LoginPage() {
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <form className="space-y-4">
+          
+          {/* Das Formular ist jetzt mit der handleLogin-Funktion verbunden */}
+          <form onSubmit={handleLogin} className="space-y-4">
+            
             {/* Email Field */}
             <div className="space-y-2">
               <Label htmlFor="email">E-Mail-Adresse</Label>
-              <Input id="email" type="email" placeholder="ihre@email.de" required className="h-11" />
+              <Input 
+                id="email" 
+                type="email" 
+                placeholder="ihre@email.de" 
+                required 
+                className="h-11"
+                // "Verdrahtung" mit dem State
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={loading} // Deaktivieren während des Ladens
+              />
             </div>
 
             {/* Password Field */}
@@ -44,12 +108,36 @@ export default function LoginPage() {
                   Passwort vergessen?
                 </Link>
               </div>
-              <Input id="password" type="password" placeholder="••••••••" required className="h-11" />
+              <Input 
+                id="password" 
+                type="password" 
+                placeholder="••••••••" 
+                required 
+                className="h-11"
+                // "Verdrahtung" mit dem State
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                disabled={loading} // Deaktivieren während des Ladens
+              />
             </div>
+            
+            {/* --- HIER WIRD DIE FEHLERMELDUNG ANGEZEIGT --- */}
+            {errorMsg && (
+              <p className="text-sm text-red-500 pt-2">{errorMsg}</p>
+            )}
 
             {/* Login Button */}
-            <Button type="submit" className="w-full h-11 bg-primary hover:bg-primary/90 text-white font-semibold">
-              Anmelden
+            <Button 
+              type="submit" 
+              className="w-full h-11 bg-primary hover:bg-primary/90 text-white font-semibold"
+              disabled={loading} // Deaktivieren während des Ladens
+            >
+              {/* Zeigt Lade-Spinner oder Text an */}
+              {loading ? (
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              ) : (
+                'Anmelden'
+              )}
             </Button>
           </form>
 
