@@ -59,12 +59,7 @@ const robotData = {
 
   // Images
   mainImage: "/humanoid-robot-digit.jpg",
-  thumbnails: [
-    "/robot-front-view.jpg",
-    "/robot-side-view.jpg",
-    "/robot-back-view.jpg",
-    "/robot-working.jpg",
-  ],
+  thumbnails: ["/robot-front-view.jpg", "/robot-side-view.jpg", "/robot-back-view.jpg", "/robot-working.jpg"],
 }
 
 export default function RobotDetailPage() {
@@ -80,6 +75,16 @@ export default function RobotDetailPage() {
             Zurück zur Übersicht
           </Button>
         </Link>
+
+        <div className="mb-6">
+          <p className="text-sm text-muted-foreground mb-2">{robotData.manufacturer}</p>
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">{robotData.model}</h1>
+          <div className="flex flex-wrap gap-2">
+            <Badge className="bg-primary text-primary-foreground">{robotData.status}</Badge>
+            <Badge variant="secondary">{robotData.category}</Badge>
+            <Badge variant="outline">{robotData.subcategory}</Badge>
+          </div>
+        </div>
 
         {/* Main 2-column layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
@@ -115,19 +120,6 @@ export default function RobotDetailPage() {
 
           {/* RIGHT COLUMN: Actions & Info */}
           <div className="space-y-6">
-            {/* B1: Header Information */}
-            <div>
-              <p className="text-sm text-muted-foreground mb-2">{robotData.manufacturer}</p>
-              <h1 className="text-3xl font-bold mb-4">{robotData.model}</h1>
-              <div className="flex flex-wrap gap-2">
-                <Badge className="bg-primary text-primary-foreground">{robotData.status}</Badge>
-                <Badge variant="secondary">{robotData.category}</Badge>
-                <Badge variant="outline">{robotData.subcategory}</Badge>
-              </div>
-            </div>
-
-            <Separator />
-
             {/* B2: Action Card (Buy Box) */}
             <Card className="bg-card border-primary/20">
               <CardHeader>
@@ -152,15 +144,14 @@ export default function RobotDetailPage() {
 
                 <Separator />
 
-                {/* CTA Buttons */}
                 <div className="space-y-2">
                   <Button className="w-full bg-primary hover:bg-primary/90" size="lg">
                     <Calendar className="mr-2 h-5 w-5" />
-                    Mietanfrage senden
+                    Roboter Mieten
                   </Button>
                   <Button variant="outline" className="w-full bg-transparent" size="lg">
                     <ShoppingCart className="mr-2 h-5 w-5" />
-                    Kaufanfrage stellen
+                    Roboter Kaufen
                   </Button>
                   <Button variant="ghost" className="w-full">
                     <Heart className="mr-2 h-4 w-4" />

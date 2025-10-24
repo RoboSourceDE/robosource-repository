@@ -1,8 +1,8 @@
 import { HeroSection } from "@/components/hero-section"
+import { NearbyRobots } from "@/components/nearby-robots"
 import { RobotFilters } from "@/components/robot-filters"
 import { TrustSignals } from "@/components/trust-signals"
 import { HowItWorks } from "@/components/how-it-works"
-import { FeaturedRobots } from "@/components/featured-robots"
 import { MerchantCTASection } from "@/components/merchant-cta-section"
 import { ContentAuthority } from "@/components/content-authority"
 
@@ -11,6 +11,9 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       {/* Section 1: Hero Section */}
       <HeroSection />
+
+      {/* Section 2: Roboter in der Nähe */}
+      <NearbyRobots />
 
       {/* Section 3: Quick Search Module */}
       <section className="py-12 px-4 sm:px-6 lg:px-8">
@@ -25,13 +28,10 @@ export default function Home() {
       {/* Section 5: So funktioniert's */}
       <HowItWorks />
 
-      {/* Section 6: Product Showcase */}
-      <FeaturedRobots />
-
-      {/* Section 7: Secondary CTA - Händler werden */}
+      {/* Section 6: Secondary CTA - Händler werden */}
       <MerchantCTASection />
 
-      {/* Section 8: Content & Authority */}
+      {/* Section 7: Content & Authority */}
       <ContentAuthority />
     </div>
   )
