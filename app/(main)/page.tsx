@@ -1,5 +1,4 @@
 import { HeroSection } from "@/components/hero-section"
-import { NearbyRobots } from "@/components/nearby-robots"
 import { RobotFilters } from "@/components/robot-filters"
 import { TrustSignals } from "@/components/trust-signals"
 import { HowItWorks } from "@/components/how-it-works"
@@ -12,8 +11,6 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       {/* Section 1: Hero Section */}
       <HeroSection />
-
-      <NearbyRobots />
 
       {/* Section 3: Quick Search Module */}
       <section className="py-12 px-4 sm:px-6 lg:px-8">
